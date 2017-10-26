@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .ttt {
+            width: 600px;
+            height: 50px;
+            background: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='ttt'>
+
+    </div>
+</body>
+<script>
+    var ttt = document.getElementsByClassName('ttt')[0];
+    ttt.addEventListener('touchmove',function(e){
+        console.log(e.touches[0])
+    })
+    console.log(    ttt.getBoundingClientRect())
+    function timeout(ms) {
+        return new Promise(resolve => {
+            if (ms === 50) {
+                resolve(555)
+            };
+        })
+    };
+    async function asyncPrint(value, ms) {
+        await timeout(ms).then(res => {
+            console.log(res)
+        });
+        console.log(value);
+    }
+
+    asyncPrint('hello world', 50);
+</script>
+
+</html>
