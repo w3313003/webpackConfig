@@ -47,13 +47,23 @@ module.exports = {
             },
             {
                 test: /\.styl$/,
-                use: [
-                    { loader: 'style-loader', options: { sourceMap: true } },
-                    { loader: 'css-loader', options: { sourceMap: true } },
-                    { loader: 'postcss-loader', options: { sourceMap: true } },
-                    { loader: 'stylus-loader', options: { sourceMap: true } }
-                ]
-            },
+                use: ExtractTextPlugin.extract({
+                    fallback: "stylus-loader",
+                    publicPath: config.cssPublicPath,
+                    use: [{
+                        loader: "css-loader",
+                        options: {
+                            minimize: true,
+                        }
+                    },
+                    {
+                        loader: "postcss-loader",
+                    }, {
+                        loader: "stylus-loader"
+                    }
+                    ]
+                })
+             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
